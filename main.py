@@ -47,14 +47,7 @@ while is_guessing:
         state.write(guess, align="center", font=("Courier", 8, "normal"))
 
     elif guess == "Exit":
-        # When the user exists, we want to get a csv file with all the states we didn't guess
-        # Bug - is doesn't always remove all the necessary states???
-        # idk why...
-
-        for elem in state_column:
-            if elem in state_column and elem not in guess_list:
-                missed.append(elem)
-
+        missed = [elem for elem in state_column if elem not in guess_list]
         states_df = pandas.DataFrame(missed)
         states_df.to_csv("missed_states.csv")
         break
